@@ -14,16 +14,16 @@ class SquareTable
     /**
      * @return int
      */
-    public function getMaximumHeight(): int
+    public function getMaximumReachableHeight(): int
     {
-        return $this->maximumHeight;
+        return $this->maximumHeight - 1;
     }
 
     /**
      * @return int
      */
-    public function getMaximumWidth(): int
+    public function getMaximumReachableWidth(): int
     {
-        return $this->maximumWidth;
+        return $this->maximumWidth - 1;
     }
 }

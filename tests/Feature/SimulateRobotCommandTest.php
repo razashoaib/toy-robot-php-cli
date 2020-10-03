@@ -50,7 +50,7 @@ class SimulateRobotCommandTest extends TestCase
     public function testSimulateRobotCommandUsingTestInputFile4(): void
     {
         $this->artisan('simulate-robot Data/test-input4.txt')
-            ->expectsOutput('0,4,SOUTH')
+            ->expectsOutput('0,3,SOUTH')
             ->assertExitCode(0);
     }
 
@@ -66,4 +66,25 @@ class SimulateRobotCommandTest extends TestCase
             ->assertExitCode(0);
     }
 
+    /**
+     * Testing SimulateRobotCommand using invalid input file
+     *
+     * @return void
+     */
+    public function testSimulateRobotCommandUsingInvalidInputFile(): void
+    {
+        $this->artisan('simulate-robot Data/test-invalid-input1.txt')
+            ->expectsOutput('Invalid input file');
+    }
+
+    /**
+     * Testing SimulateRobotCommand using invalid sequence of commands in the input file
+     *
+     * @return void
+     */
+    public function testSimulateRobotCommandUsingInvalidSequenceInputFile(): void
+    {
+        $this->artisan('simulate-robot Data/test-invalid-input2.txt')
+            ->expectsOutput('Invalid input. First command should be PLACE');
+    }
 }

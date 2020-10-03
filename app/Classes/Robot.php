@@ -30,7 +30,11 @@ class Robot extends Face implements InstructionInterface
      */
     public function place(int $x, int $y, string $face): void
     {
-        if ($this->squareTable->getMaximumWidth() >= $x && $this->squareTable->getMaximumHeight() >= $y) {
+        if ($x >= 0
+            && $y >= 0
+            && $this->squareTable->getMaximumReachableWidth() >= $x
+            && $this->squareTable->getMaximumReachableHeight() >= $y
+        ) {
             $this->x = $x;
             $this->y = $y;
             $this->face = $face;
@@ -47,7 +51,7 @@ class Robot extends Face implements InstructionInterface
         }
         switch ($this->face) {
             case Face::NORTH:
-                if ($this->squareTable->getMaximumHeight() === $this->y) {
+                if ($this->squareTable->getMaximumReachableHeight() === $this->y) {
                     return;
                 }
                 $this->y++;
@@ -59,7 +63,7 @@ class Robot extends Face implements InstructionInterface
                 $this->y--;
                 break;
             case Face::EAST:
-                if ($this->squareTable->getMaximumWidth() === $this->x) {
+                if ($this->squareTable->getMaximumReachableWidth() === $this->x) {
                     return;
                 }
                 $this->x++;
